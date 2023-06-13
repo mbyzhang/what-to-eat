@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Optional, Sequence
 from enum import Enum
 import re
 
@@ -73,6 +73,10 @@ class DataSource(ABC):
     @property
     def name(self) -> str:
         pass
+
+    @property
+    def link(self) -> Optional[str]:
+        return None
 
     @abstractmethod
     def get_lunch(self) -> Sequence[Dish]:

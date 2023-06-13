@@ -1,4 +1,4 @@
-from typing import Sequence, Tuple
+from typing import Optional, Sequence, Tuple
 from . import DataSource, Dish, DishCategory
 import requests
 from bs4 import BeautifulSoup
@@ -9,6 +9,10 @@ class GardenRestaurant(DataSource):
     @property
     def name(self) -> str:
         return "🏡 Garden Restaurant"
+
+    @property
+    def link(self) -> Optional[str]:
+        return "https://www.robinson.cam.ac.uk/college-life/garden-restaurant-menu"
 
     def get_data(self) -> Tuple[str, str]:
         page = requests.get(
