@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import datetime
 from typing import Sequence, Tuple
 from sources import DataSource, Dish, display_dishes
