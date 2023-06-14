@@ -17,23 +17,16 @@ class DishCategory(Enum):
 
     @property
     def emoji(self) -> str:
-        match self:
-            case self.CHICKEN:
-                return "🐔"
-            case self.BEEF:
-                return "🐂"
-            case self.LAMB:
-                return "🐑"
-            case self.PORK:
-                return "🐷"
-            case self.FISH:
-                return "🐟"
-            case self.DESSERT:
-                return "🍰"
-            case self.VEGAN:
-                return "🥬"
-            case self.UNKNOWN:
-                return "❓"
+        return {
+            self.CHICKEN: "🐔",
+            self.BEEF: "🐂",
+            self.LAMB: "🐑",
+            self.PORK: "🐷",
+            self.FISH: "🐟",
+            self.DESSERT: "🍰",
+            self.VEGAN: "🥬",
+            self.UNKNOWN: "❓"
+        }[self]
 
 
 @dataclass
