@@ -39,7 +39,7 @@ class DishCategory(Enum):
 @dataclass
 class Dish:
     name: str
-    price: float
+    price: Optional[float]
 
     @property
     def category(self) -> DishCategory:
@@ -62,7 +62,12 @@ class Dish:
         return DishCategory.UNKNOWN
 
     def display(self) -> str:
-        return f"{self.category.emoji} {self.name}: £{self.price}"
+        s = f"{self.category.emoji} {self.name}"
+
+        if self.price is not None:
+            s += f": £{self.price}"
+
+        return s
 
 
 def display_dishes(d: Sequence[Dish]) -> str:

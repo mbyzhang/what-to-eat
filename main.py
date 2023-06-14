@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import datetime
+import traceback
 from typing import Sequence, Tuple
 from sources import DataSource, Dish, display_dishes
 from sources.garden_restaurant import GardenRestaurant
+from sources.west_hub_canteen import WestHubCanteen
 from html import escape
 import telegram_send
 import argparse
@@ -12,23 +14,37 @@ def render_html(meal: str, restaurants: Sequence[Tuple[DataSource, Sequence[Dish
     date = datetime.date.today().strftime("%d %b %Y")
     html = f"<i>What to eat for {meal} on {date}</i>\n\n"
     for restaurant, dishes in restaurants:
+        if len(dishes) == 0:
+            continue
+
         html += f'<b><a href="{restaurant.link}">{escape(restaurant.name)}</a></b>\n'
         html += display_dishes(dishes)
-        html += "\n"
+        html += "\n\n"
     return html
 
 
-RESTAURANTS = [GardenRestaurant()]
+RESTAURANTS = [GardenRestaurant(), WestHubCanteen()]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("meal", choices=["lunch", "dinner"])
     args = parser.parse_args()
 
-    dishes = [restaurant.get_lunch() if args.meal == "lunch" else restaurant.get_dinner()
-              for restaurant in RESTAURANTS]
+    menus = []
 
-    html = render_html(args.meal, zip(RESTAURANTS, dishes))
+    for restaurant in RESTAURANTS:
+        try:
+            if args.meal == "lunch":
+                menu = restaurant.get_lunch()
+            else:
+                menu = restaurant.get_dinner()
+        except:
+            traceback.print_exc()
+            menu = []
+
+        menus.append(menu)
+
+    html = render_html(args.meal, zip(RESTAURANTS, menus))
 
     telegram_send.send(
         messages=[html], parse_mode="html", disable_web_page_preview=True)

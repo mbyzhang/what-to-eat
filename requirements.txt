@@ -2,4 +2,4 @@ requests
 beautifulsoup4
 telegram_send
 python-telegram-bot==13.5
-
+PyMuPDF==1.22.3
