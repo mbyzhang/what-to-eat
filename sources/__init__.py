@@ -46,7 +46,7 @@ class Dish:
         tokens = re.sub(r"\W+", " ", self.name.lower()).split(" ")
 
         keywords = [
-            (DishCategory.CHICKEN, ["chicken"]),
+            (DishCategory.CHICKEN, ["chicken", "turkey"]),
             (DishCategory.BEEF, ["beef"]),
             (DishCategory.LAMB, ["lamb"]),
             (DishCategory.PORK, ["pork", "gammon"]),
