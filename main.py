@@ -28,6 +28,7 @@ RESTAURANTS = [GardenRestaurant(), WestHubCanteen()]
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("meal", choices=["lunch", "dinner"])
+    parser.add_argument("--telegram-send-conf", type=str)
     args = parser.parse_args()
 
     menus = []
@@ -47,4 +48,4 @@ if __name__ == "__main__":
     html = render_html(args.meal, zip(RESTAURANTS, menus))
 
     telegram_send.send(
-        messages=[html], parse_mode="html", disable_web_page_preview=True)
+        messages=[html], parse_mode="html", disable_web_page_preview=True, conf=args.telegram_send_conf)
