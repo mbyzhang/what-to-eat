@@ -4,9 +4,7 @@ from typing import Optional, Sequence, Tuple
 from . import DataSource, Dish, DishCategory
 import requests
 from bs4 import BeautifulSoup
-import re
-from io import BytesIO
-import fitz
+import unicodedata
 
 
 user_agents_list = [
@@ -52,5 +50,5 @@ class ChuDining(DataSource):
 
     @staticmethod
     def parse(s: str) -> Sequence[Dish]:
-        s = s.strip("\n")
+        s = unicodedata.normalize("NFKD", s).strip("\n ")
         return [Dish(name, None) for name in s.split("\n") if name != ""]
