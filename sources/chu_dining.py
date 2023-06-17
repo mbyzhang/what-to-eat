@@ -17,7 +17,7 @@ user_agents_list = [
 class ChuDining(DataSource):
     @property
     def name(self) -> str:
-        return "Churchill Dining"
+        return "🦁 Churchill Dining"
 
     @property
     def link(self) -> Optional[str]:
