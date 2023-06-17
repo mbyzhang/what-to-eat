@@ -5,12 +5,15 @@ from typing import Sequence, Tuple
 from sources import DataSource, Dish, display_dishes
 from sources.garden_restaurant import GardenRestaurant
 from sources.west_hub_canteen import WestHubCanteen
+from sources.chu_dining import ChuDining
 from html import escape
 import telegram_send
 import argparse
 
 
-def render_html(meal: str, restaurants: Sequence[Tuple[DataSource, Sequence[Dish]]]) -> str:
+def render_html(
+    meal: str, restaurants: Sequence[Tuple[DataSource, Sequence[Dish]]]
+) -> str:
     date = datetime.date.today().strftime("%d %b %Y")
     html = f"<i>What to eat for {meal} on {date}</i>\n\n"
     for restaurant, dishes in restaurants:
@@ -23,7 +26,7 @@ def render_html(meal: str, restaurants: Sequence[Tuple[DataSource, Sequence[Dish
     return html
 
 
-RESTAURANTS = [GardenRestaurant(), WestHubCanteen()]
+RESTAURANTS = [GardenRestaurant(), WestHubCanteen(), ChuDining()]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -48,4 +51,8 @@ if __name__ == "__main__":
     html = render_html(args.meal, zip(RESTAURANTS, menus))
 
     telegram_send.send(
-        messages=[html], parse_mode="html", disable_web_page_preview=True, conf=args.telegram_send_conf)
+        messages=[html],
+        parse_mode="html",
+        disable_web_page_preview=True,
+        conf=args.telegram_send_conf,
+    )
