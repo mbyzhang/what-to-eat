@@ -13,6 +13,11 @@ class DishCategory(Enum):
     LAMB = "lamb"
     PORK = "pork"  # pork / gammon
     FISH = "fish"  # fish / plaice / cod
+    POTATO = "potato"
+    CARROT = "carrot"
+    RICE = "rice"
+    PASTA = "pasta"
+    SALAD = "salad"
     UNKNOWN = "unknown"
 
     @property
@@ -25,7 +30,12 @@ class DishCategory(Enum):
             self.FISH: "🐟",
             self.DESSERT: "🍰",
             self.VEGAN: "🥬",
-            self.UNKNOWN: "❓"
+            self.POTATO: "🥔",
+            self.CARROT: "🥕",
+            self.RICE: "🍚",
+            self.PASTA: "🍝",
+            self.SALAD: "🥗",
+            self.UNKNOWN: "❓",
         }[self]
 
 
@@ -43,9 +53,14 @@ class Dish:
             (DishCategory.BEEF, ["beef"]),
             (DishCategory.LAMB, ["lamb"]),
             (DishCategory.PORK, ["pork", "gammon"]),
-            (DishCategory.FISH, ["fish", "plaice", "cod"]),
+            (DishCategory.FISH, ["fish", "plaice", "cod", "haddock"]),
             (DishCategory.DESSERT, ["cake", "dessert"]),
-            (DishCategory.VEGAN, ["vegetable"]),
+            (DishCategory.POTATO, ["potato", "potatoes", "chips", "fries"]),
+            (DishCategory.CARROT, ["carrot", "carrots"]),
+            (DishCategory.RICE, ["rice"]),
+            (DishCategory.PASTA, ["pasta"]),
+            (DishCategory.SALAD, ["salad"]),
+            (DishCategory.VEGAN, ["vegetable", "vg", "vegetables"]),
         ]
 
         for cat, kws in keywords:

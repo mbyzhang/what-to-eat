@@ -33,7 +33,7 @@ class ChuDining(DataSource):
 
         b = BeautifulSoup(page.text, "html.parser")
 
-        lunch = b.find("div", class_="menu-content", id=f"lunch-menu-{weekday}").text
+        lunch = b.find("div", class_="menu-content", id=f"lunch-menu-{weekday+1}").text
         dinner = b.find(
             "div", class_="menu-content", id=f"dinner-menu-{weekday+1}"
         ).text
