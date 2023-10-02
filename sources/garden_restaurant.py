@@ -19,9 +19,9 @@ class GardenRestaurant(DataSource):
             "https://www.robinson.cam.ac.uk/college-life/garden-restaurant-menu")
         b = BeautifulSoup(page.text, "html.parser")
         lunch = b.select_one(
-            "#content > div > div > article > div > div > div:nth-child(6) > div").text
+            "#block-gavias-daudo-content > div > div > div.node__content.clearfix > div.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item > div:nth-child(6) > div").text
         dinner = b.select_one(
-            "#content > div > div > article > div > div > div:nth-child(7) > div").text
+            "#block-gavias-daudo-content > div > div > div.node__content.clearfix > div.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item > div:nth-child(7) > div").text
         return lunch, dinner
 
     def get_lunch(self) -> str:
