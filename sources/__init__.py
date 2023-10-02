@@ -18,6 +18,9 @@ class DishCategory(Enum):
     RICE = "rice"
     PASTA = "pasta"
     SALAD = "salad"
+    FRITTATA = "frittata"
+    PIZZA = "pizza"
+    MUSHROOM = "mushroom"
     UNKNOWN = "unknown"
 
     @property
@@ -35,6 +38,9 @@ class DishCategory(Enum):
             self.RICE: "🍚",
             self.PASTA: "🍝",
             self.SALAD: "🥗",
+            self.FRITTATA: "🥘",
+            self.PIZZA: "🍕",
+            self.MUSHROOM: "🍄",
             self.UNKNOWN: "❓",
         }[self]
 
@@ -60,6 +66,9 @@ class Dish:
             (DishCategory.RICE, ["rice"]),
             (DishCategory.PASTA, ["pasta"]),
             (DishCategory.SALAD, ["salad"]),
+            (DishCategory.FRITTATA, ["frittata"]),
+            (DishCategory.PIZZA, ["pizza"]),
+            (DishCategory.MUSHROOM, ["mushroom"]),
             (DishCategory.VEGAN, ["vegetable", "vg", "vegetables"]),
         ]
 
