@@ -1,13 +1,25 @@
 # what-to-eat
 
-## Installation
+Get bi-daily menu for canteens near [Computer Laboratory, Cambridge](https://www.cst.cam.ac.uk/).
+
+[⚡️ Subscribe now!](https://t.me/what_to_eat_near_CL_Cambridge)
+
+## Supported canteens
+
+* [Garden Restaurant, Robinson College](https://www.robinson.cam.ac.uk/college-life/garden-restaurant-menu)
+* [Churchill College Dining](https://www.chu.cam.ac.uk/campus-facilities/college-dining/menus/)
+* [West Hub Canteen](https://www.westcambridgehub.uk/canteen)
+
+## Developing
+
+### Installation
 
 ```
 $ pip3 install -r requirements.txt
 $ telegram-send --configure
 ```
 
-## Setting up cron job
+### Setting up cron job
 
 Run `crontab -e` and add the following lines.
 
