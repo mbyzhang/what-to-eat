@@ -2,7 +2,7 @@
 
 Get bi-daily menu for canteens near [Computer Laboratory, Cambridge](https://www.cst.cam.ac.uk/).
 
-[⚡️ Subscribe now!](https://t.me/what_to_eat_near_CL_Cambridge)
+[⚡️ Subscribe now!](https://t.me/s/what_to_eat_near_CL_Cambridge)
 
 ## Supported canteens
 
