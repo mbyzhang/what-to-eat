@@ -21,6 +21,8 @@ class DishCategory(Enum):
     FRITTATA = "frittata"
     PIZZA = "pizza"
     MUSHROOM = "mushroom"
+    TOFU = "tofu"
+    SPAGHETTI = "spaghetti"
     UNKNOWN = "unknown"
 
     @property
@@ -41,6 +43,8 @@ class DishCategory(Enum):
             self.FRITTATA: "🥘",
             self.PIZZA: "🍕",
             self.MUSHROOM: "🍄",
+            self.TOFU: "🧈",
+            self.SPAGHETTI: "🍝",
             self.UNKNOWN: "❓",
         }[self]
 
@@ -69,6 +73,8 @@ class Dish:
             (DishCategory.FRITTATA, ["frittata"]),
             (DishCategory.PIZZA, ["pizza"]),
             (DishCategory.MUSHROOM, ["mushroom"]),
+            (DishCategory.TOFU, ["tofu"]),
+            (DishCategory.SPAGHETTI, ["spaghetti"]),
             (DishCategory.VEGAN, ["vegetable", "vg", "vegetables"]),
         ]
 
