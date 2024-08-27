@@ -14,14 +14,20 @@ class GardenRestaurant(DataSource):
     def link(self) -> Optional[str]:
         return "https://www.robinson.cam.ac.uk/college-life/garden-restaurant-menu"
 
+    def find_menu(self, b: BeautifulSoup, keyword: str) -> Optional[str]:
+        for elem in b.select(".menuColumn"):
+            h3 = elem.select_one("h3")
+            if h3 and keyword == h3.text:
+                menu = elem.select_one(".menuItem")
+                return "\n".join(filter(lambda x: isinstance(x, str), menu.children))
+        return None
+
     def get_data(self) -> Tuple[str, str]:
         page = requests.get(
             "https://www.robinson.cam.ac.uk/college-life/garden-restaurant-menu")
         b = BeautifulSoup(page.text, "html.parser")
-        lunch = b.select_one(
-            "#block-gavias-daudo-content > div > div > div.node__content.clearfix > div.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item > div:nth-child(6) > div").text
-        dinner = b.select_one(
-            "#block-gavias-daudo-content > div > div > div.node__content.clearfix > div.field.field--name-body.field--type-text-with-summary.field--label-hidden.field__item > div:nth-child(7) > div").text
+        lunch = self.find_menu(b, "On Offer for Lunch")
+        dinner = self.find_menu(b, "On Offer for Dinner")
         return lunch, dinner
 
     def get_lunch(self) -> str:
@@ -38,4 +44,4 @@ class GardenRestaurant(DataSource):
         s = re.sub(r"(?m)^\s+", "", s)
         s = re.sub(r"\n+", "\n", s)
 
-        return [Dish(name, float(price)) for name, price in re.findall(r"(?m)^([\w ,]+) £([0-9.]+) /", s)]
+        return [Dish(name) for name in re.findall(r"(?m)^([\w ,]+)", s)]

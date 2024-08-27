@@ -48,7 +48,7 @@ class DishCategory(Enum):
 @dataclass
 class Dish:
     name: str
-    price: Optional[float]
+    price: Optional[float] = None
 
     @property
     def category(self) -> DishCategory:
