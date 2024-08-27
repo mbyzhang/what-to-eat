@@ -25,12 +25,15 @@ class WestHubCanteen(DataSource):
             "#block-sfh-content > article > div.content > div > div:nth-child(2) > div > div > div > div > div > div > div > a").attrs["href"]
         doc = fitz.open("pdf", requests.get(link).content)
 
+        X_start = 280
+        X_end = 800
+
         coords = [
-            fitz.Rect(220, 180, 612, 290),
-            fitz.Rect(220, 290, 612, 410),
-            fitz.Rect(220, 410, 612, 540),
-            fitz.Rect(220, 540, 612, 660),
-            fitz.Rect(220, 660, 612, 1000)
+            fitz.Rect(X_start, 100, X_end, 200),
+            fitz.Rect(X_start, 230, X_end, 330),
+            fitz.Rect(X_start, 330, X_end, 440),
+            fitz.Rect(X_start, 440, X_end, 600),
+            fitz.Rect(X_start, 660, X_end, 1000)
         ]
 
         coord = coords[weekday]
